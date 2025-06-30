@@ -180,14 +180,14 @@ export default function Home() {
             </div>
             <div>
               <h4 className="text-white text-md font-semibold mb-4">Contact</h4>
-              <p className="mb-2">123 Hospital Street</p>
-              <p className="mb-2">Cityville, State 12345</p>
-              <p className="mb-2">Email: info@hospitalsystem.com</p>
-              <p>Phone: (123) 456-7890</p>
+              <p className="mb-2">Contact Admin</p>
+              <p className="mb-2">Contact Admin</p>
+              <p className="mb-2">Email: 2000080148@kluniversity.in</p>
+              <p>Phone: </p>
             </div>
           </div>
           <div className="border-t border-secondary-700 mt-8 pt-8 text-center">
-            <p>&copy; {new Date().getFullYear()} Hospital Management System. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Hospital Management System. All rights reserved By Shivam Prakash.</p>
           </div>
         </div>
       </footer>
