@@ -183,7 +183,7 @@ export default function Home() {
               <p className="mb-2">Contact Admin</p>
               <p className="mb-2">Contact Admin</p>
               <p className="mb-2">Email: 2000080148@kluniversity.in</p>
-              <p>Phone: </p>
+              <p>Phone: +91 72929 00208</p>
             </div>
           </div>
           <div className="border-t border-secondary-700 mt-8 pt-8 text-center">
