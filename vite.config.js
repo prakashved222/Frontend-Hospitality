@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://hospitality-management-1h5k.onrender.com',
         changeOrigin: true,
       },
     },

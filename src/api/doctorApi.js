@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// Update this line
-const API_URL = 'https://hospitality-management-1h5k.onrender.com/doctors';
+// Fix the API URL to include /api/ path segment
+const API_URL = 'https://hospitality-management-1h5k.onrender.com/api/doctors';
 // Alternatively, use environment variable:
 // const API_URL = `${import.meta.env.VITE_API_URL}/doctors`;
 
@@ -83,10 +83,11 @@ export const addPrescription = async (appointmentId, prescriptionData) => {
 // Get doctors by department (no auth required)
 export const getDoctorsByDepartment = async (department) => {
   try {
+    // This function specifically needs fixing
     const response = await axios.get(`${API_URL}/department/${department}`);
     return response.data;
   } catch (error) {
-    throw error.response?.data?.error || 'Failed to fetch doctors';
+    throw error.response?.data?.error || `Failed to fetch ${department} doctors`;
   }
 };
 
