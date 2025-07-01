@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'https://hospitality-management-1h5k.onrender.com/auth';
+// Use environment variable consistently
+const API_URL = `${import.meta.env.VITE_API_URL}/auth`;
 
 // Register Doctor
 export const registerDoctor = async (doctorData) => {

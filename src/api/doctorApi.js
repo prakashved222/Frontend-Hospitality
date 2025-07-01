@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-// Fix the API URL to include /api/ path segment
-const API_URL = 'https://hospitality-management-1h5k.onrender.com/api/doctors';
-// Alternatively, use environment variable:
-// const API_URL = `${import.meta.env.VITE_API_URL}/doctors`;
+// Use environment variable consistently
+const API_URL = `${import.meta.env.VITE_API_URL}/doctors`;
 
 // Function to get configuration with auth token
 const getConfig = () => {
@@ -79,14 +77,28 @@ export const addPrescription = async (appointmentId, prescriptionData) => {
   }
 };
 
-
-// Get doctors by department (no auth required)
+// Get doctors by department (FIXED - using workaround)
 export const getDoctorsByDepartment = async (department) => {
   try {
-    // This function specifically needs fixing
-    const response = await axios.get(`${API_URL}/department/${department}`);
-    return response.data;
+    // Workaround: Get all doctors and filter by department
+    const response = await axios.get(`${API_URL}/all`);
+    const allDoctors = response.data;
+    
+    console.log('All doctors:', allDoctors); // Debug log
+    console.log('Looking for department:', department); // Debug log
+    
+    // Filter doctors by department (removed status filter for now)
+    const departmentDoctors = allDoctors.filter(doctor => 
+      doctor.department && 
+      doctor.department.toLowerCase() === department.toLowerCase()
+      // Removed: && doctor.status === 'approved'
+    );
+    
+    console.log('Filtered doctors:', departmentDoctors); // Debug log
+    
+    return { doctors: departmentDoctors };
   } catch (error) {
+    console.error('Error fetching doctors:', error);
     throw error.response?.data?.error || `Failed to fetch ${department} doctors`;
   }
 };
@@ -132,11 +144,15 @@ export const getReceivedReferrals = async () => {
 // Get all doctors
 export const getAllDoctors = async () => {
   try {
-    const response = await axios.get(`${API_URL}/all`, getConfig());
-    return response.data;
+    const response = await axios.get(`${API_URL}/all`);
+    // Remove the status filter temporarily
+    return { doctors: response.data };
+    
+    // Old code that was filtering:
+    // const approvedDoctors = response.data.filter(doctor => doctor.status === 'approved');
+    // return { doctors: approvedDoctors };
   } catch (error) {
-    console.error('Error fetching all doctors:', error);
-    throw new Error('Failed to fetch doctors list');
+    throw error.response?.data?.error || 'Failed to fetch doctors';
   }
 };
 
